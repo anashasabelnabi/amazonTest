@@ -39,6 +39,7 @@ git clone https://github.com/anashasabelnabi/amazonTest.git
 cd your-repo
 mvn clean install
 🧪 Running Tests
+Before Running : On DriverFactory.class Add your chromeDriver version or remove this line ##WebDriverManager.chromedriver().driverVersion("135.0.7049.84").setup();
 API Tests
 mvn test -Dtest=UserApiTests
 UI Tests
