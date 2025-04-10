@@ -6,6 +6,7 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import java.time.Duration;
 import java.util.List;
@@ -25,12 +26,12 @@ public class VideoGamesPage extends BasePage {
     private static final By PRODUCT_PRICES = By.cssSelector(".a-price-whole");
     private static final By PRODUCT_CARDS = By.cssSelector(".s-result-item");
     private static final By ADD_TO_CART_BUTTONS = By.name("submit.addToCart");
-    private static final By CART_COUNT = By.id("nav-cart-count");
 
     private static final By OUTSIDE = By.tagName("body");
 
     private static final By NEXT_PAGE_BUTTON = By.cssSelector(".s-pagination-item.s-pagination-next");
 
+    private static final By CART_COUNT = By.cssSelector("span.nav-cart-count.nav-cart-1");
     private static final double MAX_PRICE_EGP = 15000.0;
 
 
@@ -72,15 +73,15 @@ public class VideoGamesPage extends BasePage {
     }
 
     public void addProductsBelowMaxPriceToCart() {
-        // Initial page load
-        wait.until(ExpectedConditions.visibilityOfElementLocated(PRODUCT_CARDS));
+        int expectedCartCount = 0;
 
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(PRODUCT_CARDS));
         boolean hasNextPage = true;
-
         while (hasNextPage) {
             List<WebElement> productCards = driver.findElements(PRODUCT_CARDS);
 
-            for (WebElement card : productCards) {
+            for (int i = 0; i < productCards.size(); i++) {
+                WebElement card = driver.findElements(PRODUCT_CARDS).get(i);
                 try {
                     String priceText = (String) ((JavascriptExecutor) driver).executeScript(
                             "return arguments[0].querySelector('.a-price-whole')?.textContent || ''", card).toString().replace(",", "").replace("EGP", "").trim();
@@ -90,19 +91,26 @@ public class VideoGamesPage extends BasePage {
                     if (price < MAX_PRICE_EGP) {
                         WebElement addToCartBtn = (WebElement) ((JavascriptExecutor) driver).executeScript(
                                 "return arguments[0].querySelector('[name*=\"submit.addToCart\"]')", card);
-                        if (addToCartBtn != null && addToCartBtn.isEnabled()) {
-                            addToCartBtn.click();
-                            System.out.println("Added product with price " + price + " EGP to cart.");
-                        } else {
-                            System.out.println("Add to Cart button not clickable for product with price " + price + " EGP.");
+                        if (addToCartBtn != null && addToCartBtn.isDisplayed() && addToCartBtn.isEnabled()) {
+                            try {
+                                addToCartBtn.click();
+                                Thread.sleep(300);
+                                expectedCartCount++;
+                                System.out.println(expectedCartCount);
+                                System.out.println("Added product with price " + price + " EGP to cart.");
+                            } catch (Exception e) {
+                                expectedCartCount--;
+                                System.out.println("Add to Cart button not clickable for product with price " + price + " EGP.");
+                            }
                         }
                     }
-                } catch (NoSuchElementException | NumberFormatException e) {
+                } catch (NoSuchElementException | NumberFormatException  | StaleElementReferenceException e) {
                     continue;
                 }
             }
             hasNextPage = moveToNextPageIfNoProducts();
         }
+        assertCartItemCount(expectedCartCount);
     }
 
     public boolean moveToNextPageIfNoProducts() {
@@ -145,5 +153,20 @@ public class VideoGamesPage extends BasePage {
 
         return false;
     }
+
+    public void assertCartItemCount(int expectedCount) {
+        try {
+            if (isDisplayed(CART_COUNT)) {
+                String countText = driver.findElement(CART_COUNT).getText().trim();
+                int actualCount = Integer.parseInt(countText);
+                System.out.println(countText);
+                Assert.assertEquals(actualCount, expectedCount, "❌ Cart count doesn't match!");
+                System.out.println("✅ Cart count matches: " + actualCount);
+            }
+        } catch (Exception e) {
+            System.out.println("❌ Failed to assert cart count: " + e.getMessage());
+        }
+    }
+
 
 }
