@@ -28,7 +28,6 @@ public class ConfigReader {
         return value;
     }
 
-    // Specific getters for better readability
     public static String getBrowser() {
         return getProperty("browser");
     }

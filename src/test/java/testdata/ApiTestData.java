@@ -22,9 +22,4 @@ public class ApiTestData {
                     + testCaseFolder + "/" + fileName, e);
         }
     }
-
-    // Optional: Predefined methods for common cases
-    public static String getCreateUserResponse() {
-        return loadJsonForTestCase("UC01_createUser", "response.json");
-    }
 }

@@ -92,17 +92,15 @@ public class VideoGamesPage extends BasePage {
                                 "return arguments[0].querySelector('[name*=\"submit.addToCart\"]')", card);
                         if (addToCartBtn != null && addToCartBtn.isEnabled()) {
                             addToCartBtn.click();
-                            System.out.println("✅ Added product with price " + price + " EGP to cart.");
+                            System.out.println("Added product with price " + price + " EGP to cart.");
                         } else {
-                            System.out.println("⚠ Add to Cart button not clickable for product with price " + price + " EGP.");
+                            System.out.println("Add to Cart button not clickable for product with price " + price + " EGP.");
                         }
                     }
                 } catch (NoSuchElementException | NumberFormatException e) {
                     continue;
                 }
             }
-
-            // After processing current page, check if there's a next page
             hasNextPage = moveToNextPageIfNoProducts();
         }
     }
@@ -134,18 +132,18 @@ public class VideoGamesPage extends BasePage {
                 scrollTo(NEXT_PAGE_BUTTON);
                 click(NEXT_PAGE_BUTTON);
                 System.out.println("➡ No products below " + MAX_PRICE_EGP + " EGP, moving to next page.");
-                wait.until(ExpectedConditions.urlContains("page=")); // Wait for the page change to complete
-                return true;  // Return true to indicate there is a next page
+                wait.until(ExpectedConditions.urlContains("page="));
+                return true;
             } catch (NoSuchElementException e) {
-                System.out.println("⚠ Couldn't find next page button.");
-                return false; // No more pages available
+                System.out.println("Couldn't find next page button.");
+                return false;
             } catch (TimeoutException e) {
-                System.out.println("⚠ Timeout while waiting for the next page.");
-                return false; // No more pages available
+                System.out.println("Timeout while waiting for the next page.");
+                return false;
             }
         }
 
-        return false; // No need to move to the next page if products were found
+        return false;
     }
 
 }
