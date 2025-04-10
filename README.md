@@ -7,17 +7,22 @@
 A hybrid test automation framework supporting both **UI** (Selenium) and **API** (RestAssured) testing.
 
 ## 📦 Project Structure
-src/
-├── main/
-│ └── java/config/ # Configuration files
-└── test/
-├── java/
-│ ├── api/ # API test classes
-│ ├── pages/ # Page Objects
-│ └── testdata/ # Test data utilities
-└── resources/
-├── api/ # API request/response JSONs
-└── locators/ # UI locators
+─src
+│   ├───main
+│   │   ├───java
+│   │   │   ├───config ##contain configuration for external files
+│   │   │   └───utils  ##contain helpers for framework        
+│   │   └───resources
+│   └───test
+│       ├───java
+│       │   ├───api  ##contain api tests  
+│       │   ├───base ##contain base configuration      
+│       │   ├───pages ##contain test pages
+│       │   ├───testdata ##contain wrapper method to read testdata      
+│       │   └───ui  ##contain ui tests      
+│       └───resources
+
+
 
 Copy
 
@@ -30,27 +35,20 @@ Copy
 
 ### Installation
 ```bash
-git clone https://github.com/your-username/your-repo.git
+git clone https://github.com/anashasabelnabi/amazonTest.git
 cd your-repo
 mvn clean install
 🧪 Running Tests
 API Tests
-bash
-Copy
 mvn test -Dtest=UserApiTests
 UI Tests
-bash
-Copy
 mvn test -Dtest=AmazonUITests
 Full Suite
-bash
-Copy
 mvn test
 🔧 Configuration
 Edit src/main/resources/config.properties:
 
 properties
-Copy
 # UI Config
 base.url=https://www.amazon.eg
 browser=chrome
@@ -67,15 +65,11 @@ Parallel Execution: TestNG parallel suites
 CI/CD Ready: GitHub Actions compatible
 
 📂 Test Data Management
-API requests/responses: src/test/resources/api/
-
-UI locators: src/test/resources/locators/
+API requests/responses: src/test/resources/yourTestCase/
 
 Example API test data:
 
-json
-Copy
-// src/test/resources/api/UC01_createUser/request.json
+// src/test/resources/UC01_createUser/request.json
 {
   "name": "morpheus",
   "job": "leader"
@@ -83,8 +77,6 @@ Copy
 🐛 Debugging
 View detailed logs:
 
-bash
-Copy
 mvn test -Dtest=UserApiTests -Dlogging.level.io.restassured=DEBUG
 🤝 Contribution
 Fork the repository
@@ -100,6 +92,3 @@ Open a Pull Request
 📜 License
 MIT © [Anas Hasab]
 
-Copy
-
--
