@@ -1,2 +1,6 @@
-package regression_suite;public class TestRegression {
+package regression_suite;
+
+import org.testng.annotations.Test;
+@Test(suiteName = "Full Regression Suite")
+public class TestRegression {
 }

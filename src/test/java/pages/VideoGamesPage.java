@@ -1,6 +1,7 @@
 package pages;
 
 import base.BasePage;
+import config.ConfigReader;
 import net.bytebuddy.pool.TypePool;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -32,7 +33,7 @@ public class VideoGamesPage extends BasePage {
     private static final By NEXT_PAGE_BUTTON = By.cssSelector(".s-pagination-item.s-pagination-next");
 
     private static final By CART_COUNT = By.cssSelector("span.nav-cart-count.nav-cart-1");
-    private static final double MAX_PRICE_EGP = 15000.0;
+    private static final double MAX_PRICE_EGP = Double.parseDouble(ConfigReader.getMaxPrice());
 
 
     public void selectFreeShipping() {
@@ -72,8 +73,9 @@ public class VideoGamesPage extends BasePage {
         }
     }
 
-    public void addProductsBelowMaxPriceToCart() {
+    public double addProductsBelowMaxPriceToCart() {
         int expectedCartCount = 0;
+        double totalPrice=0;
 
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(PRODUCT_CARDS));
         boolean hasNextPage = true;
@@ -97,6 +99,7 @@ public class VideoGamesPage extends BasePage {
                                 Thread.sleep(300);
                                 expectedCartCount++;
                                 System.out.println(expectedCartCount);
+                                totalPrice += price ;
                                 System.out.println("Added product with price " + price + " EGP to cart.");
                             } catch (Exception e) {
                                 expectedCartCount--;
@@ -111,6 +114,7 @@ public class VideoGamesPage extends BasePage {
             hasNextPage = moveToNextPageIfNoProducts();
         }
         assertCartItemCount(expectedCartCount);
+        return totalPrice;
     }
 
     public boolean moveToNextPageIfNoProducts() {

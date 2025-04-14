@@ -36,11 +36,11 @@ public class ConfigReader {
         return getProperty("baseURL");
     }
 
-    public static boolean  isHeadless() {
+    public static boolean isHeadless() {
         return Boolean.parseBoolean(getProperty("headless"));
     }
 
-    public static int getImplicitlyWait(){
+    public static int getImplicitlyWait() {
         return Integer.parseInt(getProperty("implicit.wait"));
     }
 
@@ -55,5 +55,39 @@ public class ConfigReader {
     public static String getName() {
         return getProperty("welcome_message");
     }
+
+    public static String getFullName() {
+        return getProperty("full_name");
+    }
+
+    public static String getPhoneNumber() {
+        return getProperty("phone_number");
+    }
+
+    public static String getStreetName() {
+        return getProperty("street_name");
+    }
+
+    public static String getBuildingNo() {
+        return getProperty("building_no");
+    }
+
+    public static String getCity() {
+        return getProperty("city");
+    }
+
+    public static String getDistrict() {
+        return getProperty("district");
+    }
+
+    public static String getGovernorate() {
+        return getProperty("governorate");
+    }
+
+    public static String getMaxPrice() {
+        return getProperty("max_price");
+    }
+
+
 
 }

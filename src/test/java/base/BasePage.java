@@ -13,7 +13,7 @@ public abstract class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(ConfigReader.getImplicitlyWait()));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     }
 
     // ========== Basic Actions ==========
@@ -31,6 +31,17 @@ public abstract class BasePage {
     }
 
     protected void type(By locator, String text) {
+        try {
+            WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+            element.clear();
+            element.sendKeys(text);
+        }
+        catch (TimeoutException e) {
+            throw new ElementNotVisibleException("Element not visible for typing: " + locator, e);
+        }
+    }
+
+    protected void typeWithKeys(By locator, CharSequence text) {
         try {
             WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
             element.clear();

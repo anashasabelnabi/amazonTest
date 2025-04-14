@@ -11,6 +11,8 @@ public class CardPage extends BasePage {
     private static final By PROCEED_TO_CHECKOUT = By.name("proceedToRetailCheckout");
 
     public void proceedToCheckout(){
-        click(PROCEED_TO_CHECKOUT);
+        if (isDisplayed(PROCEED_TO_CHECKOUT)){
+            click(PROCEED_TO_CHECKOUT);
+        }
     }
 }
