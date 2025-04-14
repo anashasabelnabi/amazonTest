@@ -23,7 +23,6 @@ public class CheckoutPage extends BasePage {
 
     private static final By USE_THIS_PAYMENT_METHOD = By.xpath("//input[@data-testid='bottom-continue-button']");
 
-    private static final By PLACE_ORDER_BUTTON = By.xpath("//input[@data-testid='SPC_selectPlaceOrder' and @aria-labelledby='bottomSubmitOrderButtonId-announce']");
     private static final By SHIPPING_PRICE_TEXT =By.xpath("//li[.//span[contains(text(), 'Shipping & handling:')]]//span[contains(@class, 'aok-nowrap')]");
     private static final By COD_PRICE_TEXT = By.xpath("//li[.//span[contains(text(), 'Cash on Delivery Fee')]]//span[contains(@class, 'aok-nowrap')]");
     private static final By FREE_DILVERY_PRICE_TEXT = By.xpath("//div[contains(@class, 'a-row') and contains(@class, 'a-color-success')]//div[contains(@class, 'a-column') and contains(@class, 'a-span4')]");
@@ -67,12 +66,6 @@ public class CheckoutPage extends BasePage {
     public void useThisPaymentMethod(){
         click(USE_THIS_PAYMENT_METHOD);
     }
-
-    public boolean isPlaceOrderButtonDisplayed(){
-       return isDisplayed(PLACE_ORDER_BUTTON);
-    }
-
-
 
     public void verifyTotalAmount(double subtotal) {
         // Extract shipping, fees, discounts, and displayed total from the page

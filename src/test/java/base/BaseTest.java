@@ -15,27 +15,27 @@ import java.io.File;
 import java.lang.reflect.Method;
 import java.time.Duration;
 
-import static utils.ExtentManager.extent;
-
 public class BaseTest {
-
 
     protected ThreadLocal<ExtentTest> extentTest = new ThreadLocal<>();
     protected static ExtentReports extent;
-    protected static ExtentTest test;
 
     @BeforeClass
     public void setup() {
         extent = ExtentManager.getInstance();
     }
+
     @BeforeMethod
     public void setupTest(Method method) {
         ExtentTest test = extent.createTest(method.getName());
         extentTest.set(test);
     }
 
-    public ExtentTest getTest() {
-        return extentTest.get();
+    @BeforeMethod
+    public void setUp() {
+        initializeDriver();
+        configureDriver();
+        navigateToBaseUrl();
     }
 
     @AfterMethod
@@ -45,34 +45,19 @@ public class BaseTest {
         } else if (result.getStatus() == ITestResult.SKIP) {
             getTest().log(Status.SKIP, "Test Skipped");
         }
-
         DriverFactory.quitDriver();
     }
-
 
     @AfterClass
     public void flushExtent() {
         if (extent != null) {
             extent.flush();
         }
-
-        // Open the report automatically
-        try {
-            File htmlFile = new File("test-output/extent-reports/ExtentReport.html");
-            if (htmlFile.exists()) {
-                Desktop.getDesktop().browse(htmlFile.toURI());
-            }
-        } catch (Exception e) {
-            System.out.println("Unable to open report automatically: " + e.getMessage());
-        }
+        openReport();
     }
 
-
-    @BeforeMethod
-    public void setUp() {
-        initializeDriver();
-        configureDriver();
-        navigateToBaseUrl();
+    public ExtentTest getTest() {
+        return extentTest.get();
     }
 
     private void initializeDriver() {
@@ -93,5 +78,14 @@ public class BaseTest {
         return DriverFactory.getDriver();
     }
 
-
+    private void openReport() {
+        try {
+            File htmlFile = new File("test-output/extent-report.html");
+            if (htmlFile.exists()) {
+                Desktop.getDesktop().browse(htmlFile.toURI());
+            }
+        } catch (Exception e) {
+            System.out.println("Unable to open report automatically: " + e.getMessage());
+        }
+    }
 }

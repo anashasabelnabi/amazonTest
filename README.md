@@ -23,9 +23,6 @@ A hybrid test automation framework supporting both **UI** (Selenium) and **API**
 │       └───resources
 
 
-
-Copy
-
 ## 🚀 Quick Start
 
 ### Prerequisites

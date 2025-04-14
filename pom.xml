@@ -87,7 +87,7 @@
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
                     <includes>
-                        <include>UserApiTest.</include>
+                        <include>UserApiTest</include>
                         <include>AmazonTest</include>
                     </includes>
                 </configuration>
