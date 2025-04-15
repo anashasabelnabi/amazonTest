@@ -7,20 +7,20 @@
 A hybrid test automation framework supporting both **UI** (Selenium) and **API** (RestAssured) testing.
 
 ## 📦 Project Structure
-─src
-│   ├───main
-│   │   ├───java
-│   │   │   ├───config ##contain configuration for external files
-│   │   │   └───utils  ##contain helpers for framework        
-│   │   └───resources
-│   └───test
-│       ├───java
-│       │   ├───api  ##contain api tests  
-│       │   ├───base ##contain base configuration      
-│       │   ├───pages ##contain test pages
-│       │   ├───testdata ##contain wrapper method to read testdata      
-│       │   └───ui  ##contain ui tests      
-│       └───resources
+src
+├── main
+│   ├── java
+│   │   ├── config          # Configuration files (e.g., API endpoints, constants)
+│   │   └── utils           # Utility classes (e.g., helper methods, drivers)
+│   └── resources           # Main resources (e.g., property files, JSON schemas)
+└── test
+    ├── java
+    │   ├── api             # API-related test classes (e.g., REST API tests)
+    │   ├── base            # Base classes for tests (e.g., BaseTest, BaseApi)
+    │   ├── pages           # Page Object Model classes for UI tests
+    │   ├── helper          # Helper/utility classes specific to tests
+    │   └── ui              # UI-related test classes (e.g., Selenium tests)
+    └── resources           # Test-specific resources (e.g., test data, JSON files)
 
 
 ## 🚀 Quick Start
