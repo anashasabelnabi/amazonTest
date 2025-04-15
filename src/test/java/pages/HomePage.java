@@ -23,6 +23,7 @@ public class HomePage extends BasePage {
 
     private static final By TITLE = By.xpath("//b[contains(text(), 'Video Games')]");
 
+    private static final By GOT_TO_BASKET_BUTTON = By.xpath("//a[contains(text(),'Go to basket')]");
 
     public void navigateToSignIn() {
         if (isDisplayed(SIGN_IN_LINK)) {
@@ -54,5 +55,9 @@ public class HomePage extends BasePage {
         if (isDisplayed(ALL_VIDEO_GAMES)) {
             clickByJs(ALL_VIDEO_GAMES);
         }
+    }
+
+    public void goToBasket(){
+        click(GOT_TO_BASKET_BUTTON);
     }
 }

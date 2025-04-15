@@ -5,9 +5,7 @@ import com.aventstack.extentreports.Status;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.HomePage;
-import pages.LoginPage;
-import pages.VideoGamesPage;
+import pages.*;
 import config.ConfigReader;
 
 public class AmazonTest extends BaseTest {
@@ -17,8 +15,14 @@ public class AmazonTest extends BaseTest {
 
     VideoGamesPage videoGamesPage;
 
+    CardPage cardPage;
+
+    CheckoutPage checkoutPage ;
+
+    AddressFormPage addressFormPage;
+
     @Test
-    public void placeOrder() {
+    public void placeOrder() throws InterruptedException {
         WebDriver driver = getBrowser();
         getTest().log(Status.INFO, "Navigating to Sign In page");
         homePage = new HomePage(driver);
@@ -27,6 +31,7 @@ public class AmazonTest extends BaseTest {
         getTest().log(Status.INFO, "Logging in");
         loginPage = new LoginPage(driver);
         loginPage.login(ConfigReader.getEmail(), ConfigReader.getPassword());
+        handleBrandRegistryPage();
 
         String actualName = homePage.getUserName();
         getTest().log(Status.INFO, "Validating user name: " + actualName);
@@ -36,6 +41,7 @@ public class AmazonTest extends BaseTest {
         homePage.openFullMenu();
         homePage.selectVideoGames();
         homePage.selectAllVideoGames();
+        handleBrandRegistryPage();
 
         String title = homePage.getTitle();
         getTest().log(Status.INFO, "Page title: " + title);
@@ -56,10 +62,35 @@ public class AmazonTest extends BaseTest {
         Assert.assertTrue(driver.getCurrentUrl().contains("s=price-desc-rank"), "Sort not applied properly");
 
         getTest().log(Status.INFO, "Adding products under max price to cart");
-        videoGamesPage.addProductsBelowMaxPriceToCart();
+        double orderTotalAmount = videoGamesPage.addProductsBelowMaxPriceToCart();
 
         getTest().log(Status.INFO, "Moving to next page (if needed)");
         videoGamesPage.moveToNextPageIfNoProducts();
+
+        getTest().log(Status.INFO, "Open Basket Page");
+        homePage.goToBasket();
+
+        cardPage = new CardPage(driver);
+        getTest().log(Status.INFO, "Moving to Checkout");
+        cardPage.proceedToCheckout();
+
+        checkoutPage = new CheckoutPage(driver);
+        getTest().log(Status.INFO, "Navigate To Add New Address");
+        checkoutPage.userHaveAddress();
+
+        addressFormPage = new AddressFormPage(driver);
+        getTest().log(Status.INFO, "Fill Address Form");
+        addressFormPage.addFullAddress();
+
+        getTest().log(Status.INFO, "Choose Payment Method");
+        checkoutPage.handlePaymentMethod();
+
+        getTest().log(Status.INFO, "Use Cash Payment Method");
+        checkoutPage.useThisPaymentMethod();
+        //Assert.assertTrue(checkoutPage.isPlaceOrderButtonDisplayed(),"Cash Method Is Disabled");
+        getTest().log(Status.INFO, "Verify Total Amount");
+        checkoutPage.verifyTotalAmount(orderTotalAmount);
+
 
         getTest().log(Status.PASS, "Test completed successfully ✅");
 
