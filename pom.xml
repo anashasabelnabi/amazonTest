@@ -87,8 +87,8 @@
                 <configuration>
                     <testFailureIgnore>true</testFailureIgnore>
                     <includes>
-                        <include>UserApiTest</include>
-                        <include>AmazonTest</include>
+                        <include>**/UserApiTest.java</include>
+                        <include>**/AmazonTest.java</include>
                     </includes>
                 </configuration>
             </plugin>

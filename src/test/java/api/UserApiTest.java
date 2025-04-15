@@ -1,6 +1,7 @@
 package api;
 
 import base.BaseApi;
+import com.aventstack.extentreports.Status;
 import org.testng.annotations.Test;
 import testdata.ApiTestData;
 import config.ApiConfig;
@@ -19,6 +20,7 @@ public class UserApiTest extends BaseApi {
 
     @Test
     public void UC01_createUser_Happy() {
+        getTest().log(Status.INFO, "Create A New User");
          given()
                 .header("Content-Type", "application/json")
                 .body(ApiTestData.loadJsonForTestCase("UC01_createUser_Happy", "createUserRequest.json"))
@@ -34,6 +36,7 @@ public class UserApiTest extends BaseApi {
 
     @Test
     public void UC02_updateUser_Happy() {
+        getTest().log(Status.INFO, "Update User");
         String expectedResponse = ApiTestData.loadJsonForTestCase("UC02_updateUser_Happy", "createUserResponse.json");
         String actualResponse =
                 given()
@@ -50,6 +53,7 @@ public class UserApiTest extends BaseApi {
 
     @Test
     public void UC03_getUser_Happy() {
+        getTest().log(Status.INFO, "Get User");
         String expectedResponse = ApiTestData.loadJsonForTestCase("UC03_getUser_Happy", "createUserResponse.json");
         String actualResponse =
                 given()
