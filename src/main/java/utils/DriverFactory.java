@@ -57,6 +57,9 @@ public class DriverFactory {
             case "edge":
                 WebDriverManager.edgedriver().setup();
                 EdgeOptions edgeOptions = new EdgeOptions();
+                if (headless) {
+                    edgeOptions.addArguments("--headless");
+                }
                 edgeOptions.addArguments("--start-maximized");
                 edgeOptions.addArguments("--disable-notifications");
                 return new EdgeDriver(edgeOptions);

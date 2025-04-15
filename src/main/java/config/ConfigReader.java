@@ -88,6 +88,20 @@ public class ConfigReader {
         return getProperty("max_price");
     }
 
+    public static String getBrandRegisterUrl() {
+        return getProperty("brandRegistryUrl");
+    }
+
+    public static String getExtentReport() {
+        return getProperty("extent_report_path");
+    }
+
+    public static String getEnvironment() {
+        return getProperty("env");
+    }
+    public static String getTesterName() {
+        return getProperty("tester");
+    }
 
 
 }

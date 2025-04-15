@@ -31,6 +31,7 @@ public class AmazonTest extends BaseTest {
         getTest().log(Status.INFO, "Logging in");
         loginPage = new LoginPage(driver);
         loginPage.login(ConfigReader.getEmail(), ConfigReader.getPassword());
+        handleBrandRegistryPage();
 
         String actualName = homePage.getUserName();
         getTest().log(Status.INFO, "Validating user name: " + actualName);
@@ -40,6 +41,7 @@ public class AmazonTest extends BaseTest {
         homePage.openFullMenu();
         homePage.selectVideoGames();
         homePage.selectAllVideoGames();
+        handleBrandRegistryPage();
 
         String title = homePage.getTitle();
         getTest().log(Status.INFO, "Page title: " + title);

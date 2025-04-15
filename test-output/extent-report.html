@@ -35,7 +35,7 @@
 <a href="#"><span class="badge badge-primary">Test Execution Results</span></a>
 </li>
 <li class="m-r-10">
-<a href="#"><span class="badge badge-primary">Apr 15, 2025 02:14:30 AM</span></a>
+<a href="#"><span class="badge badge-primary">Apr 15, 2025 05:30:32 PM</span></a>
 </li>
 </ul>
 </div>
@@ -82,7 +82,7 @@
           <div class="test-detail">
             <p class="name">UC01_createUser_Happy</p>
             <p class="text-sm">
-              <span>2:14:31 AM</span> / <span>00:00:00:012</span>
+              <span>5:30:33 PM</span> / <span>00:00:04:191</span>
               <span class="badge pass-bg log float-right">Pass</span>
             </p>
           </div>
@@ -91,9 +91,9 @@
 <div class="p-v-10">
 <div class="info">
 <h5 class="test-status text-pass">UC01_createUser_Happy</h5>
-<span class='badge badge-success'>04.15.2025 2:14:31 AM</span>
-<span class='badge badge-danger'>04.15.2025 2:14:31 AM</span>
-<span class='badge badge-default'>00:00:00:012</span>
+<span class='badge badge-success'>04.15.2025 5:30:33 PM</span>
+<span class='badge badge-danger'>04.15.2025 5:30:37 PM</span>
+<span class='badge badge-default'>00:00:04:191</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=1</span>
 <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
 <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
@@ -106,9 +106,23 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>2:14:31 AM</td>
+        <td>5:30:33 PM</td>
         <td>
           Create A New User
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>5:30:33 PM</td>
+        <td>
+          🔄 Performing POST request for test case: UC01_createUser_Happy
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log pass-bg">Pass</span></td>
+        <td>5:30:37 PM</td>
+        <td>
+          ✅ User created successfully
         </td>
       </tr>
   </tbody>
@@ -116,25 +130,25 @@
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="2"
+        <li class="test-item"  status="fail" test-id="2"
           author=""
           tag=""
           device="">
           <div class="test-detail">
             <p class="name">UC02_updateUser_Happy</p>
             <p class="text-sm">
-              <span>2:14:35 AM</span> / <span>00:00:00:002</span>
-              <span class="badge pass-bg log float-right">Pass</span>
+              <span>5:30:37 PM</span> / <span>00:00:00:877</span>
+              <span class="badge fail-bg log float-right">Fail</span>
             </p>
           </div>
           <div class="test-contents d-none">
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">UC02_updateUser_Happy</h5>
-<span class='badge badge-success'>04.15.2025 2:14:35 AM</span>
-<span class='badge badge-danger'>04.15.2025 2:14:35 AM</span>
-<span class='badge badge-default'>00:00:00:002</span>
+<h5 class="test-status text-fail">UC02_updateUser_Happy</h5>
+<span class='badge badge-success'>04.15.2025 5:30:37 PM</span>
+<span class='badge badge-danger'>04.15.2025 5:30:38 PM</span>
+<span class='badge badge-default'>00:00:00:877</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=2</span>
 <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
 <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
@@ -147,9 +161,39 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>2:14:35 AM</td>
+        <td>5:30:37 PM</td>
         <td>
           Update User
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>5:30:37 PM</td>
+        <td>
+          🔄 Performing PATCH request for test case: UC02_updateUser_Happy
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log info-bg">Info</span></td>
+        <td>5:30:37 PM</td>
+        <td>
+          🔍 Comparing JSON for test case: UC02_updateUser_Happy
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>5:30:38 PM</td>
+        <td>
+          ❌ JSON mismatch in test case: UC02_updateUser_Happy<br><b>Error:</b> JSON documents are different:<br>Different keys found in node "", missing: "anas", expected: <{"anas":"","job":"hasab","name":"anas","updatedAt":"${json-unit.any-string}"}> but was: <{"job":"hasab","name":"anas","updatedAt":"2025-04-15T15:30:38.312Z"}><br>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>5:30:38 PM</td>
+        <td>
+          Test Failed: java.lang.AssertionError: ❌ JSON comparison failed for UC02_updateUser_Happy: JSON documents are different:
+Different keys found in node "", missing: "anas", expected: <{"anas":"","job":"hasab","name":"anas","updatedAt":"${json-unit.any-string}"}> but was: <{"job":"hasab","name":"anas","updatedAt":"2025-04-15T15:30:38.312Z"}>
+
         </td>
       </tr>
   </tbody>
@@ -157,25 +201,25 @@
 </div>
           </div>
         </li>
-        <li class="test-item"  status="pass" test-id="3"
+        <li class="test-item"  status="fail" test-id="3"
           author=""
           tag=""
           device="">
           <div class="test-detail">
             <p class="name">UC03_getUser_Happy</p>
             <p class="text-sm">
-              <span>2:14:35 AM</span> / <span>00:00:00:002</span>
-              <span class="badge pass-bg log float-right">Pass</span>
+              <span>5:30:38 PM</span> / <span>00:00:00:248</span>
+              <span class="badge fail-bg log float-right">Fail</span>
             </p>
           </div>
           <div class="test-contents d-none">
 <div class="detail-head">
 <div class="p-v-10">
 <div class="info">
-<h5 class="test-status text-pass">UC03_getUser_Happy</h5>
-<span class='badge badge-success'>04.15.2025 2:14:35 AM</span>
-<span class='badge badge-danger'>04.15.2025 2:14:35 AM</span>
-<span class='badge badge-default'>00:00:00:002</span>
+<h5 class="test-status text-fail">UC03_getUser_Happy</h5>
+<span class='badge badge-success'>04.15.2025 5:30:38 PM</span>
+<span class='badge badge-danger'>04.15.2025 5:30:38 PM</span>
+<span class='badge badge-default'>00:00:00:248</span>
 &middot; <span class='uri-anchor badge badge-default'>#test-id=3</span>
 <span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
 <span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
@@ -188,99 +232,39 @@
   <tbody>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>2:14:35 AM</td>
+        <td>5:30:38 PM</td>
         <td>
           Get User
         </td>
       </tr>
-  </tbody>
-</table>
-</div>
-          </div>
-        </li>
-        <li class="test-item"  status="fail" test-id="4"
-          author=""
-          tag=""
-          device="">
-          <div class="test-detail">
-            <p class="name">placeOrder</p>
-            <p class="text-sm">
-              <span>2:14:42 AM</span> / <span>00:00:31:986</span>
-              <span class="badge fail-bg log float-right">Fail</span>
-            </p>
-          </div>
-          <div class="test-contents d-none">
-<div class="detail-head">
-<div class="p-v-10">
-<div class="info">
-<h5 class="test-status text-fail">placeOrder</h5>
-<span class='badge badge-success'>04.15.2025 2:14:42 AM</span>
-<span class='badge badge-danger'>04.15.2025 2:15:14 AM</span>
-<span class='badge badge-default'>00:00:31:986</span>
-&middot; <span class='uri-anchor badge badge-default'>#test-id=4</span>
-<span title='Skip to the next failed step' class='badge badge-danger pointer float-right ne ml-1'><i class="fa fa-fast-forward"></i></span>
-<span title='Collapse all nodes' class='badge badge-default pointer float-right ct ml-1'><i class="fa fa-compress"></i></span>
-<span title='Expand all nodes' class='badge badge-default pointer float-right et'><i class="fa fa-expand"></i></span>
-</div>
-</div>
-</div><div class="detail-body mt-4">
-<table class="table table-sm">
-  <thead><tr><th class="status-col">Status</th><th class="timestamp-col">Timestamp</th><th class="details-col">Details</th></tr></thead>
-  <tbody>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>2:14:42 AM</td>
+        <td>5:30:38 PM</td>
         <td>
-          Navigating to Sign In page
+          🔄 Performing GET request for test case: UC03_getUser_Happy
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log info-bg">Info</span></td>
-        <td>2:14:43 AM</td>
+        <td>5:30:38 PM</td>
         <td>
-          Logging in
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>2:14:48 AM</td>
-        <td>
-          Validating user name: Hello, Anas
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>2:14:48 AM</td>
-        <td>
-          Navigating to Video Games section
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>2:14:53 AM</td>
-        <td>
-          Page title: Video Games
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>2:14:53 AM</td>
-        <td>
-          Applying filters: Free Shipping + New Condition
-        </td>
-      </tr>
-      <tr class="event-row">
-        <td><span class="badge log info-bg">Info</span></td>
-        <td>2:15:14 AM</td>
-        <td>
-          Validating URL filters: https://www.amazon.eg/-/en/s?rh=n%3A18022560031%2Cp_n_free_shipping_eligible%3A21909080031&dc&qid=1744676090&rnid=21909079031&ref=sr_nr_p_n_free_shipping_eligible_1
+          🔍 Comparing JSON for test case: UC03_getUser_Happy
         </td>
       </tr>
       <tr class="event-row">
         <td><span class="badge log fail-bg">Fail</span></td>
-        <td>2:15:14 AM</td>
+        <td>5:30:38 PM</td>
         <td>
-          Test Failed: java.lang.AssertionError: Missing condition filter in URL expected [true] but found [false]
+          ❌ JSON mismatch in test case: UC03_getUser_Happy<br><b>Error:</b> JSON documents are different:<br>Different keys found in node "data", missing: "data.anas", expected: <{"anas":"","avatar":"https://reqres.in/img/faces/5-image.jpg","email":"charles.morris@reqres.in","first_name":"Charles","id":5,"last_name":"Morris"}> but was: <{"avatar":"https://reqres.in/img/faces/5-image.jpg","email":"charles.morris@reqres.in","first_name":"Charles","id":5,"last_name":"Morris"}><br>
+        </td>
+      </tr>
+      <tr class="event-row">
+        <td><span class="badge log fail-bg">Fail</span></td>
+        <td>5:30:38 PM</td>
+        <td>
+          Test Failed: java.lang.AssertionError: ❌ JSON comparison failed for UC03_getUser_Happy: JSON documents are different:
+Different keys found in node "data", missing: "data.anas", expected: <{"anas":"","avatar":"https://reqres.in/img/faces/5-image.jpg","email":"charles.morris@reqres.in","first_name":"Charles","id":5,"last_name":"Morris"}> but was: <{"avatar":"https://reqres.in/img/faces/5-image.jpg","email":"charles.morris@reqres.in","first_name":"Charles","id":5,"last_name":"Morris"}>
+
         </td>
       </tr>
   </tbody>
@@ -302,25 +286,25 @@
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Started</p>
-<h3>Apr 15, 2025 02:14:30 AM</h3>
+<h3>Apr 15, 2025 05:30:32 PM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0">Ended</p>
-<h3>Apr 15, 2025 02:15:14 AM</h3>
+<h3>Apr 15, 2025 05:30:38 PM</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0 text-pass">Tests Passed</p>
-<h3>3</h3>
+<h3>1</h3>
 </div></div>
 </div>
 <div class="col-md-3">
 <div class="card"><div class="card-body">
 <p class="m-b-0 text-fail">Tests Failed</p>
-<h3>1</h3>
+<h3>2</h3>
 </div></div>
 </div>
 </div>
@@ -336,12 +320,12 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='75%'>
-<b>3</b> tests passed
+<div><small data-tooltip='33%'>
+<b>1</b> tests passed
 </small>
 </div>
 <div>
-<small data-tooltip='25%'><b>1</b> tests failed,
+<small data-tooltip='66%'><b>2</b> tests failed,
 <b>0</b> skipped, <b data-tooltip='0%'>0</b> others
 </small>
 </div>
@@ -359,10 +343,10 @@
 </div>
 </div>
 <div class="card-footer">
-<div><small data-tooltip='0%'><b>0</b> events passed</small></div>
+<div><small data-tooltip='7%'><b>1</b> events passed</small></div>
 <div>
-<small data-tooltip='9%'><b>1</b> events failed,
-<b data-tooltip='%'>10</b> others
+<small data-tooltip='30%'><b>4</b> events failed,
+<b data-tooltip='%'>8</b> others
 </small>
 </div>
 </div>
@@ -378,7 +362,7 @@
 </div></div>
 <script>
 var timeline = {
-"UC01_createUser_Happy":0.012,"UC02_updateUser_Happy":0.002,"UC03_getUser_Happy":0.002,"placeOrder":31.986
+"UC01_createUser_Happy":4.191,"UC02_updateUser_Happy":0.877,"UC03_getUser_Happy":0.248
 };
 </script>
 <div class="row">
@@ -405,8 +389,8 @@ var timeline = {
 <script>
 var statusGroup = {
 parentCount: 5,
-passParent: 3,
-failParent: 1,
+passParent: 1,
+failParent: 2,
 warningParent: 0,
 skipParent: 0,
 childCount: 5,
@@ -422,11 +406,11 @@ warningGrandChild: 0,
 skipGrandChild: 0,
 infoGrandChild: 0,
 eventsCount: 5,
-passEvents: 0,
-failEvents: 1,
+passEvents: 1,
+failEvents: 4,
 warningEvents: 0,
 skipEvents: 0,
-infoEvents: 10
+infoEvents: 8
 };
 </script>        </div>
       </div>
