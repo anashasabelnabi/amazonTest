@@ -23,17 +23,6 @@ public class BaseTest {
     protected ThreadLocal<ExtentTest> extentTest = new ThreadLocal<>();
     protected static ExtentReports extent;
 
-    @BeforeClass
-    public void setup() {
-        extent = ExtentManager.getInstance();
-    }
-
-    @BeforeMethod
-    public void setupTest(Method method) {
-        ExtentTest test = extent.createTest(method.getName());
-        extentTest.set(test);
-    }
-
     @BeforeMethod
     public void setUp() {
         DriverFactory.createDriver();
@@ -69,12 +58,25 @@ public class BaseTest {
         }
     }
 
+    @BeforeClass
+    public void setup() {
+        extent = ExtentManager.getInstance();
+    }
+
+    @BeforeMethod
+    public void setupTest(Method method) {
+        ExtentTest test = extent.createTest(method.getName());
+        extentTest.set(test);
+    }
+
+
+
     @AfterMethod
     public void tearDown(ITestResult result) {
         if (result.getStatus() == ITestResult.FAILURE) {
             getTest().log(Status.FAIL, "Test Failed: " + result.getThrowable());
         } else if (result.getStatus() == ITestResult.SKIP) {
-            getTest().log(Status.SKIP, "Test Skipped");
+            getTest().log(Status.SKIP, "Test Skipped" );
         }
         DriverFactory.quitDriver();
     }

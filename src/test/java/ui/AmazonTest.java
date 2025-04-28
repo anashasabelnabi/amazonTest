@@ -4,9 +4,12 @@ import base.BaseTest;
 import com.aventstack.extentreports.Status;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.SkipException;
 import org.testng.annotations.Test;
 import pages.*;
 import config.ConfigReader;
+
+import static base.BaseApi.getTest;
 
 public class AmazonTest extends BaseTest {
 
@@ -64,9 +67,6 @@ public class AmazonTest extends BaseTest {
         getTest().log(Status.INFO, "Adding products under max price to cart");
         double orderTotalAmount = videoGamesPage.addProductsBelowMaxPriceToCart();
 
-        getTest().log(Status.INFO, "Moving to next page (if needed)");
-        videoGamesPage.moveToNextPageIfNoProducts();
-
         getTest().log(Status.INFO, "Open Basket Page");
         homePage.goToBasket();
 
@@ -83,7 +83,12 @@ public class AmazonTest extends BaseTest {
         addressFormPage.addFullAddress();
 
         getTest().log(Status.INFO, "Choose Payment Method");
-        checkoutPage.handlePaymentMethod();
+        if(checkoutPage.handlePaymentMethod()){
+            getTest().log(Status.INFO, "Cash option is Selected");
+        }else{
+            getTest().log(Status.SKIP, "❌ Cash option is disabled, skipping the test.");
+            throw new SkipException("Cash option is disabled, skipping test.");
+        }
 
         getTest().log(Status.INFO, "Use Cash Payment Method");
         checkoutPage.useThisPaymentMethod();

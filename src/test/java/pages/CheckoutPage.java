@@ -1,12 +1,15 @@
 package pages;
 
 import base.BasePage;
+import com.aventstack.extentreports.Status;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.SkipException;
+
+import static base.BaseApi.getTest;
 
 public class CheckoutPage extends BasePage {
     public CheckoutPage(WebDriver driver) {
@@ -21,7 +24,7 @@ public class CheckoutPage extends BasePage {
 
     private static final By CASH_PAYMENT_METHOD = By.xpath("//input[contains(@value, 'paymentMethod=COD')]");
 
-    private static final By USE_THIS_PAYMENT_METHOD = By.xpath("//input[@data-testid='bottom-continue-button']");
+    private static final By USE_THIS_PAYMENT_METHOD = By.xpath("//input[@aria-labelledby='orderSummaryPrimaryActionBtn-announce']");
 
     private static final By SHIPPING_PRICE_TEXT =By.xpath("//li[.//span[contains(text(), 'Shipping & handling:')]]//span[contains(@class, 'aok-nowrap')]");
     private static final By COD_PRICE_TEXT = By.xpath("//li[.//span[contains(text(), 'Cash on Delivery Fee')]]//span[contains(@class, 'aok-nowrap')]");
@@ -50,16 +53,18 @@ public class CheckoutPage extends BasePage {
         }
     }
 
-    public void handlePaymentMethod() {
+    public boolean handlePaymentMethod() {
         if (isDisplayed(CASH_PAYMENT_METHOD)) {
             WebElement element = driver.findElement(CASH_PAYMENT_METHOD);
             if (element.isEnabled()) {
                 click(CASH_PAYMENT_METHOD);
+                return true;
             } else {
-                throw new SkipException("Cash option is disabled, skipping test.");
+                return false;
             }
         } else {
             System.out.println("Payment Method Not Displayed");
+            return false;
         }
     }
 

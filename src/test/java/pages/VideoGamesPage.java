@@ -81,7 +81,6 @@ public class VideoGamesPage extends BasePage {
         boolean hasNextPage = true;
         while (hasNextPage) {
             List<WebElement> productCards = driver.findElements(PRODUCT_CARDS);
-
             for (int i = 0; i < productCards.size(); i++) {
                 WebElement card = driver.findElements(PRODUCT_CARDS).get(i);
                 try {
@@ -98,11 +97,10 @@ public class VideoGamesPage extends BasePage {
                                 addToCartBtn.click();
                                 Thread.sleep(300);
                                 expectedCartCount++;
-                                System.out.println(expectedCartCount);
                                 totalPrice += price ;
                                 System.out.println("Added product with price " + price + " EGP to cart.");
+                                System.out.println(expectedCartCount);
                             } catch (Exception e) {
-                                expectedCartCount--;
                                 System.out.println("Add to Cart button not clickable for product with price " + price + " EGP.");
                             }
                         }
@@ -161,9 +159,10 @@ public class VideoGamesPage extends BasePage {
     public void assertCartItemCount(int expectedCount) {
         try {
             if (isDisplayed(CART_COUNT)) {
+                wait.until(ExpectedConditions.textToBe(CART_COUNT, String.valueOf(expectedCount)));
                 String countText = driver.findElement(CART_COUNT).getText().trim();
                 int actualCount = Integer.parseInt(countText);
-                System.out.println(countText);
+                System.out.println(actualCount);
                 Assert.assertEquals(actualCount, expectedCount, "❌ Cart count doesn't match!");
                 System.out.println("✅ Cart count matches: " + actualCount);
             }
